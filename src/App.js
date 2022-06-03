@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React from 'react';
 import {
   BrowserRouter as Router,
   Routes,
@@ -6,26 +6,26 @@ import {
 } from "react-router-dom";
 
 import TemplatePage from './templates/page';
-import TemplateDefault from './templates/default';
-import Counter from './pages/counter';
-import Albuns from './pages/albuns';
-import Users from './pages/users';
+import TemplateDefault from './templates/default'; 
+import UsersList from './pages/users/list';
+import UsersRegister from './pages/users/register';
+import UsersEdit from './pages/users/edit';
 import Home from './pages/home';
-import './style/style.css';
-import Button from '@mui/material/Button';
+import './style/style.css'; 
 
 function App() {
   return (
-    <TemplateDefault>
-      <Router>
+    <Router>
+      <TemplateDefault>
         <Routes>
-          <Route path='/users' element={<TemplatePage title='Users' Component={Users}/>}/>
-          <Route path='/' element={<TemplatePage title='Home' Component={Home}/>}>
-            
-          </Route>
+          <Route path='/users/edit/:id' element={<TemplatePage title='Editar Usuario' Component={UsersEdit}/>}/>
+          <Route path='/users/add' element={<TemplatePage title='Cadastro de Usuario' Component={UsersRegister}/>}/>
+          <Route path='/users' element={<TemplatePage title='Usuarios' Component={UsersList}/>}/>
+          <Route path='/' element={<TemplatePage title='Home' Component={Home}/>} />
         </Routes>
-      </Router>
-    </TemplateDefault>
+      </TemplateDefault>
+    </Router>
+    
   );
 }
 
