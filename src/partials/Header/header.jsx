@@ -27,7 +27,7 @@ const useStyles = makeStyles(()=>({
      }
 }))
 
-const Header = ( ) => {
+const Header = ({ user }) => {
     const classes = useStyles();
     const navigate  = useNavigate();
 
@@ -59,7 +59,11 @@ const Header = ( ) => {
           <Typography variant="h6" className={classes.title} >
             My app
           </Typography>
-          <Button color="inherit">Login</Button>
+          {
+            user.logged
+            ? <Typography variant="h6"  >{user.email.value}</Typography>
+            : <Button color="inherit">Login</Button>
+          }
         </Toolbar>
       </AppBar>
       <Drawer open={menuOpen} onClose={()=> handleToggleMenu()}>
@@ -68,11 +72,11 @@ const Header = ( ) => {
             <ListItemIcon><HomeIcon /></ListItemIcon>
             <ListItemText>Home</ListItemText>
           </ListItem>
-          <ListItem button onClick={()=> handleMenuClick('/users')}>
+          <ListItem button onClick={()=> handleMenuClick('/clientes')}>
             <ListItemIcon><PersonIcon /></ListItemIcon>
             <ListItemText>Lista de Clientes</ListItemText>
           </ListItem>
-          <ListItem button onClick={()=> handleMenuClick('/users/add')}>
+          <ListItem button onClick={()=> handleMenuClick('/clientes/add')}>
             <ListItemIcon><PersonAddIcon /></ListItemIcon>
             <ListItemText>Cadastro de Clientes</ListItemText>
           </ListItem>
